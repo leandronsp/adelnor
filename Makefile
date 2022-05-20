@@ -23,6 +23,7 @@ run.tests: ## Runs Unit tests
 
 ci: ## Runs Unit tests in CI
 	bundle lock --add-platform x86_64-linux
+	bundle install
 	ruby -Itest test/all.rb
 
 ##### Gem #####
