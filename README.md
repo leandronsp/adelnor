@@ -14,8 +14,11 @@ Open `http://localhost:3000`
 ## Publishing the gem
 
 ```bash
-make gem.build
-make gem.install    # locally
-make gem.signin     # sign in to rubygems.org using owner credentials
-make gem.push       # push gem to rubygems.org
+make gem.publish version=0.0.4
+```
+
+## Yanking (deleting) a specific version
+
+```bash
+make gem.yank version=0.0.3
 ```
