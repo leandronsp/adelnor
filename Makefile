@@ -21,6 +21,10 @@ bash: ## Creates a container Bash
 run.tests: ## Runs Unit tests
 	@docker-compose run --rm ruby ruby -Itest test/all.rb
 
+ci: ## Runs Unit tests in CI
+	bundle lock --add-platform x86_64-linux
+	ruby -Itest test/all.rb
+
 ##### Gem #####
 gem.publish: ## Publishes the gem to https://rubygems.org (auth required)
 	@docker-compose run \
