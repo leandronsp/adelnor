@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Adelnor
   class Request
     attr_reader :request_method, :request_path, :headers, :body,
-      :content_length, :path_info, :query_string
+                :content_length, :path_info, :query_string
 
     def initialize(message)
       @message = message
@@ -35,9 +37,9 @@ module Adelnor
     private
 
     def parse_headline!(line)
-      return unless line.match(/HTTP\/.*?/)
+      return unless line.match(%r{HTTP/.*?})
 
-      @request_method, @request_path, _ = line.split
+      @request_method, @request_path, = line.split
       @path_info, @query_string         = @request_path.split('?')
     end
 

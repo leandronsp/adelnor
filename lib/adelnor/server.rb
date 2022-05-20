@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'socket'
 require 'rack'
 require 'stringio'
@@ -26,40 +28,44 @@ module Adelnor
     def rack_data(request)
       {
         'REQUEST_METHOD' => request.request_method,
-        'PATH_INFO'      => request.path_info,
-        'QUERY_STRING'   => request.query_string,
-        'SERVER_PORT'    => @port,
-        'SERVER_NAME'    => request.headers['Host'],
+        'PATH_INFO' => request.path_info,
+        'QUERY_STRING' => request.query_string,
+        'SERVER_PORT' => @port,
+        'SERVER_NAME' => request.headers['Host'],
         'CONTENT_LENGTH' => request.content_length,
-        'HTTP_COOKIE'    => request.headers['Cookie'],
-        'rack.input'     => StringIO.new(request.body)
+        'HTTP_COOKIE' => request.headers['Cookie'],
+        'rack.input' => StringIO.new(request.body)
       }.merge(request.headers)
     end
 
     def run
       loop do
-        client, _ = @socket.accept
+        client, = @socket.accept
 
-        read_request_message(client)
-          .then { |message|  Request.build(message) }
-          .tap  { |request|  request.parse_body!(client) }
-          .then { |request|  rack_data(request) }
-          .then { |data|     @rack_app.call(data) }
-          .then { |result|   Response.build(*result) }
-          .then { |response| client.puts(response) }
+        handle(client)
 
         client.close
       end
     end
 
+    def handle(client)
+      read_request_message(client)
+        .then { |message|  Request.build(message) }
+        .tap  { |request|  request.parse_body!(client) }
+        .then { |request|  rack_data(request) }
+        .then { |data|     @rack_app.call(data) }
+        .then { |result|   Response.build(*result) }
+        .then { |response| client.puts(response) }
+    end
+
     def read_request_message(client)
       message = ''
 
-			message += client.gets
+      message += client.gets
       puts
       puts "[#{Time.now}] #{message}"
 
-      while line = client.gets
+      while (line = client.gets)
         break if line == "\r\n"
 
         message += line
@@ -69,17 +75,17 @@ module Adelnor
     end
 
     def welcome_message
-      <<-WELCOME
-|\---/|
-| o_o |
- \_^_/
+      <<~WELCOME
+        |\---/|
+        | o_o |
+         \_^_/
 
-adelnor HTTP server
+        adelnor HTTP server
 
-------------------------------------------------
+        ------------------------------------------------
 
-Adelnor is running at http://0.0.0.0:#{@port}
-Listening to HTTP connections
+        Adelnor is running at http://0.0.0.0:#{@port}
+        Listening to HTTP connections
       WELCOME
     end
   end

@@ -1,1 +1,3 @@
-Dir['./test/*.rb'].each {|file| require file }
+# frozen_string_literal: true
+
+Dir['./test/*.rb'].sort.each { |file| require file }

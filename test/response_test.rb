@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test/unit'
 require 'json'
 
@@ -9,7 +11,7 @@ module Adelnor
       status   = 200
       headers  = {}
       body     = ''
-      response = Adelnor::Response.build(*[status, headers, body])
+      response = Adelnor::Response.build(status, headers, body)
 
       assert_equal "HTTP/2.0 200\r\n\r\n", response
     end
@@ -18,7 +20,7 @@ module Adelnor
       status   = 200
       headers  = { 'Content-Type' => 'text/html' }
       body     = ''
-      response = Adelnor::Response.build(*[status, headers, body])
+      response = Adelnor::Response.build(status, headers, body)
 
       assert_equal "HTTP/2.0 200\r\nContent-Type: text/html\r\n\r\n", response
     end
@@ -27,7 +29,7 @@ module Adelnor
       status   = 201
       headers  = { 'Content-Type' => 'application/json' }
       body     = { success: true }.to_json
-      response = Response.build(*[status, headers, body])
+      response = Response.build(status, headers, body)
 
       assert_equal "HTTP/2.0 201\r\nContent-Type: application/json\r\n\r\n{\"success\":true}", response
     end

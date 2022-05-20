@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Adelnor
   class Response
     def initialize(status, headers, body)

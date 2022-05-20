@@ -24,7 +24,11 @@ run.tests: ## Runs Unit tests
 ci: ## Runs Unit tests in CI
 	bundle lock --add-platform x86_64-linux
 	bundle install
+	rubocop
 	ruby -Itest test/all.rb
+
+rubocop: ## Runs code linter
+	@docker-compose run --rm ruby rubocop
 
 ##### Gem #####
 gem.publish: ## Publishes the gem to https://rubygems.org (auth required)
