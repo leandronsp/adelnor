@@ -1,4 +1,4 @@
-# Adelnor
+# adelnor
 
 A dead simple, yet Rack-compatible, HTTP server written in Ruby
 
