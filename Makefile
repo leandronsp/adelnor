@@ -11,6 +11,9 @@ bundle.install:
 bash:
 	@docker-compose run --rm ruby bash
 
+run.tests:
+	@docker-compose run --rm ruby ruby -Itest test/all.rb
+
 ##### Gem #####
 gem.build:
 	@docker-compose run \
