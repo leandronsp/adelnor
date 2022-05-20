@@ -16,7 +16,7 @@ module Adelnor
       @socket.bind(addr)
       @socket.listen(2)
 
-      puts "Listening to the port #{@port}..."
+      puts welcome_message
     end
 
     def self.run(*args)
@@ -55,6 +55,10 @@ module Adelnor
     def read_request_message(client)
       message = ''
 
+			message += client.gets
+      puts
+      puts "[#{Time.now}] #{message}"
+
       while line = client.gets
         break if line == "\r\n"
 
@@ -62,6 +66,21 @@ module Adelnor
       end
 
       message
+    end
+
+    def welcome_message
+      <<-WELCOME
+|\---/|
+| o_o |
+ \_^_/
+
+adelnor HTTP server
+
+------------------------------------------------
+
+Adelnor is running at http://0.0.0.0:#{@port}
+Listening to HTTP connections
+      WELCOME
     end
   end
 end
