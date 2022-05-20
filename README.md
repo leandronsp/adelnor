@@ -1,7 +1,7 @@
 # adelnor 
 
 ![rubygems](https://badgen.net/rubygems/n/adelnor) 
-![rubygems](https://badgen.net/rubygems/v/adelnor) 
+![rubygems](https://badgen.net/rubygems/v/adelnor/latest) 
 ![rubygems](https://badgen.net/rubygems/dt/adelnor) 
 
 ![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg) 
