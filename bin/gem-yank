@@ -1,0 +1,6 @@
+#!/bin/bash
+
+VERSION=$1
+
+gem signin
+gem yank adelnor -v $1

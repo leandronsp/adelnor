@@ -1,0 +1,8 @@
+#!/bin/bash
+
+VERSION=$1
+
+gem signin
+gem build adelnor.gemspec
+gem install adelnor-$1.gem
+gem push adelnor-$1.gem

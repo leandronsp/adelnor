@@ -7,8 +7,10 @@ services:
     volumes:
       - .:/app
       - rubygems:/usr/local/bundle
+      - gemconfig:/root/.local/share/gem
     ports:
       - "3000:3000"
 
 volumes:
   rubygems:
+  gemconfig:

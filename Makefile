@@ -15,26 +15,14 @@ run.tests:
 	@docker-compose run --rm ruby ruby -Itest test/all.rb
 
 ##### Gem #####
-gem.build:
+gem.publish:
 	@docker-compose run \
 		--rm \
 		ruby \
-		gem build adelnor.gemspec
+		bash -c "bin/gem-publish ${version}"
 
-gem.install:
+gem.yank:
 	@docker-compose run \
 		--rm \
 		ruby \
-		gem install ./adelnor-${version}.gem
-
-gem.signin:
-	@docker-compose run \
-		--rm \
-		ruby \
-		gem signin
-
-gem.push:
-	@docker-compose run \
-		--rm \
-		ruby \
-		gem push adelnor-${version}.gem
+		bash -c "bin/gem-yank ${version}"

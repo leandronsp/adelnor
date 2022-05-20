@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'adelnor'
-  spec.version     = '0.0.2'
+  spec.version     = '0.0.4'
   spec.summary     = 'Adelnor HTTP server'
   spec.description = 'A dead simple, yet Rack-compatible, HTTP server written in Ruby'
   spec.authors     = ['Leandro Proença']

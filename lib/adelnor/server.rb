@@ -2,8 +2,8 @@ require 'socket'
 require 'rack'
 require 'stringio'
 
-require './lib/request'
-require './lib/response'
+require_relative './request'
+require_relative './response'
 
 module Adelnor
   class Server
