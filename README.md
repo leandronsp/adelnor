@@ -1,6 +1,12 @@
-# adelnor
+# adelnor 
 
-![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg)
+![rubygems](https://badgen.net/rubygems/n/adelnor) 
+![rubygems](https://badgen.net/rubygems/v/adelnor) 
+![rubygems](https://badgen.net/rubygems/dt/adelnor) 
+
+![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg) 
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop) 
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://rubystyle.guide)
 ```            .___     .__                       
 _____     __| _/____ |  |   ____   ___________ 
 \__  \   / __ |/ __ \|  |  /    \ /  _ \_  __ \
@@ -9,20 +15,25 @@ _____     __| _/____ |  |   ____   ___________
      \/      \/    \/          \/              
 ```
 
-A dead simple, yet Rack-compatible, HTTP server written in Ruby.
+[adelnor](https://rubygems.org/gems/adelnor) is a dead simple, yet Rack-compatible, HTTP server written in Ruby.
 
 ## Requirements
 
-Ruby.
+Ruby
 
-## Tooling
+## Installation
+```bash
+$ gem install adelnor
+```
 
-Make and Docker.
+## Development tooling
+
+Make and Docker
 
 ## Using make
 
 ```bash
-make help
+$ make help
 ```
 Output:
 ```
@@ -32,6 +43,8 @@ Usage: make <target>
   bundle.install             Installs the Ruby gems
   bash                       Creates a container Bash
   run.tests                  Runs Unit tests
+  rubocop                    Runs code linter
+  ci                         Runs Unit tests in CI
   gem.publish                Publishes the gem to https://rubygems.org (auth required)
   gem.yank                   Removes a specific version from the Rubygems
 ```
@@ -39,20 +52,8 @@ Usage: make <target>
 ## Running a sample server in development
 
 ```bash
-make bundle.install
-make sample.server
+$ make bundle.install
+$ make sample.server
 ```
 
 Open `http://localhost:3000`
-
-## Publishing the gem
-
-```bash
-make gem.publish version=0.0.4
-```
-
-## Yanking (deleting) a specific version
-
-```bash
-make gem.yank version=0.0.3
-```
