@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/server'
+require './lib/adelnor/server'
 
 app = -> (env) do
   [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
