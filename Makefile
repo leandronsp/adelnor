@@ -25,7 +25,7 @@ gem.install:
 	@docker-compose run \
 		--rm \
 		ruby \
-		gem install ./adelnor-0.0.1.gem
+		gem install ./adelnor-${version}.gem
 
 gem.signin:
 	@docker-compose run \
@@ -37,4 +37,4 @@ gem.push:
 	@docker-compose run \
 		--rm \
 		ruby \
-		gem push adelnor-0.0.1.gem
+		gem push adelnor-${version}.gem
