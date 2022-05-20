@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'json'
 
-require './lib/response'
+require './lib/adelnor/response'
 
 module Adelnor
   class ResponseTest < Test::Unit::TestCase

@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'stringio'
 
-require './lib/request'
+require './lib/adelnor/request'
 
 module Adelnor
   class RequestTest < Test::Unit::TestCase
