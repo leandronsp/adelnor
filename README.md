@@ -1,6 +1,23 @@
 # adelnor
 
-A dead simple, yet Rack-compatible, HTTP server written in Ruby
+![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg)
+```            .___     .__                       
+_____     __| _/____ |  |   ____   ___________ 
+\__  \   / __ |/ __ \|  |  /    \ /  _ \_  __ \
+ / __ \_/ /_/ \  ___/|  |_|   |  (  <_> )  | \/
+(____  /\____ |\___  >____/___|  /\____/|__|   
+     \/      \/    \/          \/              
+```
+
+A dead simple, yet Rack-compatible, HTTP server written in Ruby.
+
+## Requirements
+
+Ruby.
+
+## Tooling
+
+Make and Docker.
 
 ## Using make
 
