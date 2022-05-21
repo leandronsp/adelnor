@@ -18,8 +18,8 @@ module Adelnor
 
     private
 
-    def headers_as_string = @headers.reduce('', &method(:header_as_string))
+    def headers_as_string = @headers.reduce('', &method(:acc_header_string))
 
-    def header_as_string(acc, (key, value)) = acc += "#{key}: #{value}\r\n"
+    def acc_header_string(acc, (key, value)) = acc += "#{key}: #{value}\r\n"
   end
 end
