@@ -5,7 +5,7 @@ module Adelnor
     def initialize(status, headers, body)
       @status  = status
       @headers = headers
-      @body    = body
+      @body    = body.respond_to?(:first) ? body.first : body
     end
 
     def self.build(*args)
@@ -13,12 +13,10 @@ module Adelnor
     end
 
     def build
-      "HTTP/2.0 #{@status}\r\n#{headers_as_string}\r\n#{body_as_string}"
+      "HTTP/2.0 #{@status}\r\n#{headers_as_string}\r\n#{@body}"
     end
 
     private
-
-    def body_as_string = @body.respond_to?(:first) ? @body.first : @body
 
     def headers_as_string
       @headers.reduce('') do |acc, (key, value)|
