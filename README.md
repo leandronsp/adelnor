@@ -7,12 +7,13 @@
 ![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://rubystyle.guide)
-```            .___     .__
-_____     __| _/____ |  |   ____   ___________
-\__  \   / __ |/ __ \|  |  /    \ /  _ \_  __ \
- / __ \_/ /_/ \  ___/|  |_|   |  (  <_> )  | \/
-(____  /\____ |\___  >____/___|  /\____/|__|
-     \/      \/    \/          \/
+```
+     ___       _______   _______  __      .__   __.   ______   .______      
+    /   \     |       \ |   ____||  |     |  \ |  |  /  __  \  |   _  \     
+   /  ^  \    |  .--.  ||  |__   |  |     |   \|  | |  |  |  | |  |_)  |    
+  /  /_\  \   |  |  |  ||   __|  |  |     |  . `  | |  |  |  | |      /     
+ /  _____  \  |  '--'  ||  |____ |  `----.|  |\   | |  `--'  | |  |\  \----.
+/__/     \__\ |_______/ |_______||_______||__| \__|  \______/  | _| `._____|
 ```
 
 [adelnor](https://rubygems.org/gems/adelnor) is a dead simple, yet Rack-compatible, HTTP server written in Ruby.
