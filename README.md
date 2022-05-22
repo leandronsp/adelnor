@@ -1,18 +1,18 @@
-# adelnor 
+# adelnor
 
-![rubygems](https://badgen.net/rubygems/n/adelnor) 
-![rubygems](https://badgen.net/rubygems/v/adelnor/latest) 
-![rubygems](https://badgen.net/rubygems/dt/adelnor) 
+![rubygems](https://badgen.net/rubygems/n/adelnor)
+![rubygems](https://badgen.net/rubygems/v/adelnor/latest)
+![rubygems](https://badgen.net/rubygems/dt/adelnor)
 
-![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg) 
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop) 
+![Build](https://github.com/leandronsp/adelnor/actions/workflows/build.yml/badge.svg)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://rubystyle.guide)
-```            .___     .__                       
-_____     __| _/____ |  |   ____   ___________ 
+```            .___     .__
+_____     __| _/____ |  |   ____   ___________
 \__  \   / __ |/ __ \|  |  /    \ /  _ \_  __ \
  / __ \_/ /_/ \  ___/|  |_|   |  (  <_> )  | \/
-(____  /\____ |\___  >____/___|  /\____/|__|   
-     \/      \/    \/          \/              
+(____  /\____ |\___  >____/___|  /\____/|__|
+     \/      \/    \/          \/
 ```
 
 [adelnor](https://rubygems.org/gems/adelnor) is a dead simple, yet Rack-compatible, HTTP server written in Ruby.
