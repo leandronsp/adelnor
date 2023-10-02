@@ -21,6 +21,8 @@ module Adelnor
       lines    = @message.split(/\r\n/)
       headline = lines.shift
 
+      return self unless headline
+
       parse_headline!(headline)
       parse_headers!(lines)
 

@@ -4,7 +4,8 @@
 require './lib/adelnor/server'
 
 app = -> (env) do
+  sleep rand(0.01..1)
   [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
 end
 
-Adelnor::Server.run app, 3000
+Adelnor::Server.run app, 3000, thread_pool: 5
