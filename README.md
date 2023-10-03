@@ -57,4 +57,16 @@ $ make bundle.install
 $ make sample.server
 ```
 
+## Using Thread Pool
+
+```ruby
+require './lib/adelnor/server'
+
+app = -> (env) do
+  [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
+end
+
+Adelnor::Server.run app, 3000, thread_pool: 5
+```
+
 Open `http://localhost:3000`

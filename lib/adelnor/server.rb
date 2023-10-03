@@ -9,15 +9,17 @@ require_relative './response'
 
 module Adelnor
   class Server
-    def initialize(rack_app, port)
+    def initialize(rack_app, port, options = {})
       @rack_app = rack_app
       @port     = port
+      @options  = options
       @socket   = Socket.new(:INET, :STREAM)
       addr      = Socket.sockaddr_in(@port, '0.0.0.0')
 
       @socket.bind(addr)
       @socket.listen(2)
 
+      @thread_queue = Queue.new if @options[:thread_pool]
       puts welcome_message
     end
 
@@ -39,12 +41,41 @@ module Adelnor
     end
 
     def run
+      if (pool_size = @options[:thread_pool])
+        return run_with_thread_pool(pool_size)
+      end
+
       loop do
         client, = @socket.accept
 
         handle(client)
-
         client.close
+      end
+    end
+
+    def run_with_thread_pool(pool_size)
+      pool_size.times do
+        handle_request_in_thread
+      end
+
+      loop do
+        client, = @socket.accept
+
+        @thread_queue.push(client)
+      end
+    end
+
+    def handle_request_in_thread
+      Thread.new do
+        tid = Thread.current.object_id
+
+        puts "[#{tid}] Thread started"
+        loop do
+          client = @thread_queue.pop
+
+          handle(client)
+          client.close
+        end
       end
     end
 
@@ -61,9 +92,11 @@ module Adelnor
     def read_request_message(client)
       message = ''
 
-      message += client.gets
-      puts
-      puts "[#{Time.now}] #{message}"
+      if (line = client.gets)
+        message += line
+      end
+
+      puts "\n[#{Time.now}] #{message}"
 
       while (line = client.gets)
         break if line == "\r\n"
@@ -75,6 +108,8 @@ module Adelnor
     end
 
     def welcome_message
+      thread_pool_message = "Running with thread pool of #{@options[:thread_pool]} threads" if @options[:thread_pool]
+
       <<~WELCOME
         |\---/|
         | o_o |
@@ -86,6 +121,8 @@ module Adelnor
 
         Adelnor is running at http://0.0.0.0:#{@port}
         Listening to HTTP connections
+
+        #{thread_pool_message}
       WELCOME
     end
   end
