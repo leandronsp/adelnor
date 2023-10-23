@@ -2,6 +2,7 @@
 
 require_relative './base_server'
 require_relative './threaded_server'
+require_relative './clustered_server'
 
 module Adelnor
   class Server
@@ -16,7 +17,14 @@ module Adelnor
     end
 
     def run
-      handler_klass = @options[:thread_pool] ? ThreadedServer : BaseServer
+      handler_klass = if @options[:thread_pool] 
+        ThreadedServer 
+      elsif @options[:cluster]
+        ClusteredServer
+      else
+        BaseServer
+      end
+
       handler_klass.run(@rack_app, @port, @options)
     end
   end
