@@ -3,6 +3,8 @@
 require_relative './base_server'
 require_relative './threaded_server'
 require_relative './clustered_server'
+require_relative './ractor_server'
+require_relative './async_server'
 
 module Adelnor
   class Server
@@ -19,8 +21,12 @@ module Adelnor
     def run
       handler_klass = if @options[:thread_pool] 
         ThreadedServer 
-      elsif @options[:cluster]
+      elsif @options[:workers]
         ClusteredServer
+      #elsif @options[:ractors]
+      #  RactorServer
+      elsif @options[:async]
+        AsyncServer
       else
         BaseServer
       end
