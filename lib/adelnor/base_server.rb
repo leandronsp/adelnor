@@ -77,7 +77,17 @@ module Adelnor
     end
 
     def welcome_message
-      thread_pool_message = "Running with thread pool of #{@options[:thread_pool]} threads" if @options[:thread_pool]
+      if @options[:thread_pool]
+        message = "Running with thread pool of #{@options[:thread_pool]} threads"
+      elsif @options[:workers]
+        message = "Running with #{@options[:workers]} workers"
+      elsif @options[:ractors]
+        message = "Running with #{@options[:ractors]} ractors"
+      elsif @options[:async]
+        message = "Running in async mode"
+      else 
+      end
+
 
       <<~WELCOME
         |\---/|
@@ -91,7 +101,7 @@ module Adelnor
         Adelnor is running at http://0.0.0.0:#{@port}
         Listening to HTTP connections
 
-        #{thread_pool_message}
+        #{message}
       WELCOME
     end
   end

@@ -23,8 +23,8 @@ module Adelnor
                         ThreadedServer
                       elsif @options[:workers]
                         ClusteredServer
-                      # elsif @options[:ractors]
-                      #  RactorServer
+                      elsif @options[:ractors]
+                        RactorServer
                       elsif @options[:async]
                         AsyncServer
                       else

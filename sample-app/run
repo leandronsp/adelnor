@@ -3,12 +3,14 @@
 
 require './lib/adelnor/server'
 
-app = -> (env) do
-  sleep rand(0.01..1)
-  [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
+class App
+  def call(env)
+    sleep rand(0.01..1)
+    [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
+  end
 end
 
-#Adelnor::Server.run app, 3000, thread_pool: 5
-#Adelnor::Server.run app, 3000, workers: 5
-#Adelnor::Server.run app, 3000, ractors: 5
-Adelnor::Server.run app, 3000, async: true
+#Adelnor::Server.run App.new, 3000, thread_pool: 5
+#Adelnor::Server.run App.new, 3000, workers: 5
+#Adelnor::Server.run App.new, 3000, async: true
+Adelnor::Server.run App.new, 3000, ractors: 5
