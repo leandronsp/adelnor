@@ -8,4 +8,7 @@ app = -> (env) do
   [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
 end
 
-Adelnor::Server.run app, 3000, thread_pool: 5
+#Adelnor::Server.run app, 3000, thread_pool: 5
+#Adelnor::Server.run app, 3000, workers: 5
+#Adelnor::Server.run app, 3000, ractors: 5
+Adelnor::Server.run app, 3000, async: true
