@@ -4,33 +4,32 @@ require_relative './base_server'
 
 module Adelnor
   class ThreadedServer < BaseServer
-    def initialize(rack_app, port, options = {})
-      super(rack_app, port, options)
-
-      @thread_queue = Queue.new
-      @pool_size = options[:thread_pool]
-    end
-
     def run
-      @pool_size.times do
+      @options[:thread_pool].times do
         Thread.new { handle_thread }
       end
 
       loop do
         client, = @socket.accept
 
-        @thread_queue.push(client)
+        queue.push(client)
       end
+    end
+
+    private
+
+    def queue
+      @queue ||= Queue.new
     end
 
     def handle_thread
       tid = Thread.current.object_id
-
       puts "[#{tid}] Thread started"
-      loop do
-        client = @thread_queue.pop
 
-        handle(client)
+      loop do
+        client = queue.pop
+
+        @handler.handle(client)
         client.close
       end
     end
