@@ -59,7 +59,7 @@ $ make sample.server
 
 ## Handling concurrency
 
-Currently Adelnor allows to run the server using different concurrency strategies.
+Currently Adelnor allows to run the server using different concurrency strategies, one at a time.
 
 ```ruby
 require './lib/adelnor/server'
