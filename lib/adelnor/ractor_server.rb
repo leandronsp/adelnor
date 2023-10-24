@@ -37,9 +37,6 @@ module Adelnor
       end
     end
 
-    def handle_ractor(ractor)
-    end
-
     def queue
       @queue ||= Ractor.new do
         loop do
