@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://github.com/leandronsp/adelnor'
   spec.license     = 'MIT'
 
-  spec.add_runtime_dependency 'rack', '~> 2.2'
   spec.add_runtime_dependency 'async', '~> 2.6'
+  spec.add_runtime_dependency 'rack', '~> 2.2'
 
   spec.required_ruby_version = '~> 3.0'
 end

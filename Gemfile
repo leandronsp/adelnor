@@ -2,6 +2,6 @@
 
 source 'https://rubygems.org'
 
+gem 'async'
 gem 'rack'
 gem 'rubocop', require: false
-gem 'async'

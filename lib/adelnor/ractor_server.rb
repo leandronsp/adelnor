@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 require_relative './base_server'
 
@@ -18,8 +19,8 @@ module Adelnor
       end
 
       @listener = Ractor.new(@queue, @port) do |queue, port|
-        socket   = Socket.new(:INET, :STREAM)
-        addr      = Socket.sockaddr_in(port, '0.0.0.0')
+        socket = Socket.new(:INET, :STREAM)
+        addr = Socket.sockaddr_in(port, '0.0.0.0')
 
         socket.bind(addr)
         socket.listen(2)
@@ -35,7 +36,7 @@ module Adelnor
     end
 
     def run
-      ractors = @ractors.times.map do 
+      ractors = @ractors.times.map do
         Ractor.new(@queue, @rack_app, @port) do |queue, rack_app, port|
           rid = Ractor.current.object_id
           puts "[#{rid}] Ractor started"
@@ -56,8 +57,8 @@ module Adelnor
               message += line
             end
 
-            rack_data = -> (request) do
-              { 
+            rack_data = lambda do |request|
+              {
                 'REQUEST_METHOD' => request.request_method,
                 'PATH_INFO' => request.path_info,
                 'QUERY_STRING' => request.query_string,
@@ -70,11 +71,11 @@ module Adelnor
             end
 
             Request.build(message)
-              .tap  { |request|  request.parse_body!(client) }
-              .then { |request|  rack_data.call(request).merge(request.headers) }
-              .then { |data|     rack_app.call(data) }
-              .then { |result|   Response.build(*result) }
-              .then { |response| client.puts(response) }
+                   .tap  { |request|  request.parse_body!(client) }
+                   .then { |request|  rack_data.call(request).merge(request.headers) }
+                   .then { |data|     rack_app.call(data) }
+                   .then { |result|   Response.build(*result) }
+                   .then { |response| client.puts(response) }
 
             client.close
           end
@@ -87,3 +88,4 @@ module Adelnor
     end
   end
 end
+# rubocop:enable all

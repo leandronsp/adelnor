@@ -11,21 +11,23 @@ module Adelnor
     end
 
     def run
-      @workers.times do 
-        fork do
-          pid = Process.pid
-          puts "[#{pid}] Worker started"
-
-          loop do
-            client, = @socket.accept
-
-            handle(client)
-            client.close
-          end
-        end
+      @workers.times do
+        fork { handle_worker }
       end
 
       Process.waitall
+    end
+
+    def handle_worker
+      pid = Process.pid
+      puts "[#{pid}] Worker started"
+
+      loop do
+        client, = @socket.accept
+
+        handle(client)
+        client.close
+      end
     end
   end
 end

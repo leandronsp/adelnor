@@ -19,17 +19,17 @@ module Adelnor
     end
 
     def run
-      handler_klass = if @options[:thread_pool] 
-        ThreadedServer 
-      elsif @options[:workers]
-        ClusteredServer
-      #elsif @options[:ractors]
-      #  RactorServer
-      elsif @options[:async]
-        AsyncServer
-      else
-        BaseServer
-      end
+      handler_klass = if @options[:thread_pool]
+                        ThreadedServer
+                      elsif @options[:workers]
+                        ClusteredServer
+                      # elsif @options[:ractors]
+                      #  RactorServer
+                      elsif @options[:async]
+                        AsyncServer
+                      else
+                        BaseServer
+                      end
 
       handler_klass.run(@rack_app, @port, @options)
     end
