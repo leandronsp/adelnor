@@ -6,20 +6,16 @@ require 'async/scheduler'
 
 module Adelnor
   class AsyncServer < BaseServer
-    def initialize(rack_app, port, options = {})
-      super(rack_app, port, options)
-
+    def run
       scheduler = Async::Scheduler.new
       Fiber.set_scheduler(scheduler)
-    end
 
-    def run
       Async do |task|
         loop do
           client, = @socket.accept
 
           task.async do
-            handle(client)
+            @handler.handle(client)
             client.close
           end
         end

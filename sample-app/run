@@ -10,6 +10,7 @@ class App
   end
 end
 
+#Adelnor::Server.run App.new, 3000
 #Adelnor::Server.run App.new, 3000, thread_pool: 5
 #Adelnor::Server.run App.new, 3000, workers: 5
 #Adelnor::Server.run App.new, 3000, async: true
