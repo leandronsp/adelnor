@@ -57,7 +57,9 @@ $ make bundle.install
 $ make sample.server
 ```
 
-## Using Thread Pool
+## Handling concurrency
+
+Currently Adelnor allows to run the server using different concurrency strategies.
 
 ```ruby
 require './lib/adelnor/server'
@@ -66,7 +68,14 @@ app = -> (env) do
   [200, { 'Content-Type' => 'text/html' }, 'Hello world!']
 end
 
+# Threaded mode
 Adelnor::Server.run app, 3000, thread_pool: 5
+
+# Clusterd mode (forking)
+Adelnor::Server.run app, 3000, workers: 2
+
+# Async mode
+Adelnor::Server.run app, 3000, async: true
 ```
 
 Open `http://localhost:3000`
